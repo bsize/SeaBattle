@@ -16,7 +16,7 @@ public abstract class BaseEntity {
     protected static Logger logger = Logger.getInstance();
     protected static Browser browser = Browser.getInstance();
     protected ITestContext context;
-    private static final String PASS = "съешь меня";
+    private static final String PASS = "1";
 
     /**
      * Get locale
@@ -114,10 +114,6 @@ public abstract class BaseEntity {
         }
     }
 
-    public void mergeAutomatic() {
-
-    }
-
     /**
      * Assert Objects are Equal
      *
@@ -184,8 +180,5 @@ public abstract class BaseEntity {
         logger.info(String.format("----==[ %1$s ]==----", info));
     }
 
-    public void mergeAutomatic3() {
-        String yaZabilTochkySZapyatoi = "mana-mana"
-    }
 
 }
