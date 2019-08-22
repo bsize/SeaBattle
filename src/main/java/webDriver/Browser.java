@@ -41,8 +41,7 @@ public class Browser {
                 driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
                 logger.info(logger.getLoc("loc.browser.constructed"));
             } catch (NamingException e) {
-                logger.info("NamingException...");
-                e.printStackTrace();
+                logger.error("Browser driver wasn't constructed");
             }
             instance = new Browser();
         }
@@ -70,7 +69,8 @@ public class Browser {
             driver = null;
             instance = null;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Driver didn't quit");
+
         } finally {
             instance = null;
         }
@@ -96,7 +96,7 @@ public class Browser {
                 return false;
             });
         } catch (Exception e) {
-            logger.warn(logger.getLoc("loc.browser.page.timeout"));
+            logger.error(logger.getLoc("loc.browser.page.timeout"));
         }
     }
 

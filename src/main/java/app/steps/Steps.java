@@ -1,6 +1,6 @@
 package app.steps;
 
-import app.Pages.*;
+import app.pages.*;
 import app.menu.SectionMenu;
 import app.menu.OSandProductMenu;
 import webDriver.Logger.Logger;
@@ -22,12 +22,13 @@ public class Steps {
     private static SendEmailPage sendEmailPage;
     private static ConfirmationPage confirmationPage;
     private static Logger logger = Logger.getInstance();
+    private static String regexForSearchInTExt = "https.*Download";
+    private static String searchWord = "Download";
 
     public void btnSignInClick() {
         homePage = new HomePage();
         homePage.btnSignInClick();
         signInPage = new SignInPage();
-        assertTrue(signInPage.checkSignInPageIsDisplayed(), "SignIn page not opened");
     }
 
     public void authorization(String email, String password) {
@@ -69,6 +70,6 @@ public class Steps {
 
     public void checkMessageInMail() throws IOException, MessagingException {
         logger.info(logger.getLoc("loc.check.mail"));
-        Assert.assertTrue(RegularExpression.searchRegex("https.*Download", CheckMailAPI.getMessage()).contains("Download"), "Text in message don't contains necessary word");
+        Assert.assertTrue(RegularExpression.searchRegex(regexForSearchInTExt, CheckMailAPI.getMessage()).contains(searchWord), "Text in message don't contains necessary word");
     }
 }

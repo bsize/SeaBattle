@@ -29,13 +29,21 @@ public abstract class BaseElement {
         this.element = Browser.getInstance().getDriver().findElement(locator);
     }
 
+    public BaseElement(By locator) {
+        this.locator = locator;
+    }
+
+    public BaseElement(String string, String name) {
+
+    }
+
     public WebElement getElement() {
         logger.info(logger.getLoc("loc.element.getelement") + name);
         return element;
     }
 
     public void click() {
-        Waiters.waitToBeClickable(locator);
+        Waiters.waitToBeClickable(locator, name);
         action = new Actions(Browser.getInstance().getDriver());
         try {
             action.click(getElement()).build().perform();
@@ -97,13 +105,12 @@ public abstract class BaseElement {
     }
 
     public void waitForIsElementPresent() {
-        logger.info("Wait until element to be present ");
+        logger.info(String.format("Wait until element '%s' to be present", name));
         isPresent(20);
         Assert.assertTrue(element.isDisplayed());
     }
 
     public boolean isPresent(int timeout) {
-        logger.info(name+" "+logger.getLoc("loc.is.present"));
         WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
         Browser.getInstance().getDriver().manage().timeouts().implicitlyWait(TIMEOUT_WAIT, TimeUnit.SECONDS);
         try {
@@ -118,18 +125,20 @@ public abstract class BaseElement {
                     }
                     element = (WebElement) driver.findElement(locator);
                 } catch (Exception e) {
+                    logger.error("Exception" + e);
                     return false;
                 }
                 return element.isDisplayed();
             });
         } catch (Exception e) {
+            logger.error("Exception" + e);
             return false;
         }
         try {
             Browser.getInstance().getDriver().manage().timeouts().implicitlyWait(TIMEOUT_FOR_CONDITIONS, TimeUnit.SECONDS);
             return element.isDisplayed();
         } catch (Exception e) {
-           logger.warn(e.getMessage());
+            logger.error("Exception" + e);
         }
         return false;
     }

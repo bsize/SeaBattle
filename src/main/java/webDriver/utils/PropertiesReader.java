@@ -20,7 +20,7 @@ public class PropertiesReader {
             outputText = props.getProperty(prop);
             reader.close();
         } catch (IOException e) {
-            logger.warn(e.getMessage());
+            logger.error("Failed to retrieve property");
         }
         logger.info(String.format("Get property == %s == for %s", outputText,  prop));
         return outputText;
@@ -34,7 +34,7 @@ public class PropertiesReader {
             outputText = props.getProperty(name);
             reader.close();
         } catch (IOException e) {
-            logger.warn(e.getMessage());
+            logger.error("Failed to retrieve property");
         }
         logger.info(String.format("Get property == %s == for %s", outputText,  name));
         return outputText;

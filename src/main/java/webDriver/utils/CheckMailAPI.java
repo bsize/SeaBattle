@@ -53,7 +53,7 @@ public class CheckMailAPI {
             store = emailSession.getStore("pop3s");
             store.connect(host, email, password);
         } catch (MessagingException e) {
-            logger.warn("MessagingException" + e);
+            logger.error("Connect session failed");
         }
         return store;
     }
@@ -65,7 +65,7 @@ public class CheckMailAPI {
             folder = store.getFolder("INBOX");
             folder.open(Folder.READ_WRITE);
         } catch (MessagingException e) {
-            logger.warn("MessagingException" + e);
+            logger.error("Create a folder Inbox failed ");
         }
         return folder;
     }
@@ -102,7 +102,7 @@ public class CheckMailAPI {
             emailFolder.close(true);
             store.close();
         } catch (MessagingException e) {
-            logger.warn("MessagingException" + e);
+            logger.error("Delete message failed");
         }
     }
 
@@ -116,7 +116,7 @@ public class CheckMailAPI {
             try {
                 messages = emailFolder.getMessages();
             } catch (MessagingException e) {
-                logger.warn("MessagingException" + e);
+                logger.error("Get message in folder failed");
                 return false;
             }
             return messages.length == 1;

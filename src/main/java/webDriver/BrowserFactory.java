@@ -8,11 +8,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import webDriver.Browser.Browsers;
-
+import webDriver.Logger.Logger;
 import javax.naming.NamingException;
 import java.util.HashMap;
 
 public class BrowserFactory {
+
+    private static Logger logger = Logger.getInstance();
 
     public static WebDriver setUp(final Browsers type) throws NamingException {
         WebDriver driver;
@@ -26,6 +28,7 @@ public class BrowserFactory {
                 driver = new FirefoxDriver(setFireFoxPreferences());
                 break;
             default:
+                logger.warn("Selected type of browser not support");
                 throw new NamingException();
         }
         return driver;
@@ -37,6 +40,7 @@ public class BrowserFactory {
                 return setUp(t);
             }
         }
+        logger.warn("Selected type of browser not support");
         throw new NamingException();
     }
 
