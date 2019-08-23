@@ -35,7 +35,7 @@ public class SendEmailForm {
         }
     }
 
-    public void btnSendEmailClick() {
+    public void btnSendClick() {
         checkCaptchaIsPresent();
         btnSend.click();
     }

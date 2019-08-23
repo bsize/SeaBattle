@@ -14,7 +14,7 @@ public class SmartDataDrivenTest extends BaseEntity {
         steps.authorize(email, password);
         logger.logDelim();
 
-        logger.step("Step 2", "Go to the tab Downloads");
+        logger.step("Step 2", "Go to the tab Loading");
         steps.btnSiteSubMenuClick();
         logger.logDelim();
 
@@ -31,7 +31,7 @@ public class SmartDataDrivenTest extends BaseEntity {
         logger.logDelim();
 
         logger.step("Step 3.3", "Click Send and check Email");
-        steps.btnSendEmailClick();
+        steps.btnSendClick();
         steps.checkMessageInMail();
     }
 }

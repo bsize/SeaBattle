@@ -55,9 +55,9 @@ public class Steps {
         downloadForm.btnSendByEmailClick();
     }
 
-    public void btnSendEmailClick() {
+    public void btnSendClick() {
         sendEmailForm = new SendEmailForm();
-        sendEmailForm.btnSendEmailClick();
+        sendEmailForm.btnSendClick();
         btnConfirmationClick();
     }
 
