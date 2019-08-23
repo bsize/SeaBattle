@@ -64,7 +64,7 @@ public class BrowserFactory {
         chromePrefs.put("download.prompt_for_download", false);
         chromePrefs.put("download.directory_upgrade", true);
         chromePrefs.put("safebrowsing.enabled", true);
-        options.addArguments("--lang=" + "ru");
+        chromePrefs.put("intl.accept_languages", "ru");
         options.setExperimentalOption("prefs", chromePrefs);
         return options;
     }

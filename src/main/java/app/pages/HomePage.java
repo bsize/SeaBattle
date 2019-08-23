@@ -5,8 +5,7 @@ import webDriver.elements.Button;
 
 public class HomePage {
 
-    //TODO разобраться с локатором
-    private Button btnSignIn = new Button(By.xpath("//button[contains(@class,'btn btn-primary size-lg js-signin-button')]"), "SignIn");
+    private Button btnSignIn = new Button(By.xpath("//button[contains(text(), 'Войти')]"), "SignIn");
 
     public HomePage() {
         super();
