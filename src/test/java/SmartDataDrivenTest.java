@@ -11,22 +11,27 @@ public class SmartDataDrivenTest extends BaseEntity {
     public void DownloadKasperskyProductTest(String email, String password, String os, String productName) throws IOException, MessagingException {
 
         logger.step("Step 1", "Authorization");
-        steps.btnSignInClick();
-        steps.authorization(email, password);
+        steps.authorize(email, password);
+        logger.logDelim();
 
         logger.step("Step 2", "Go to the tab Downloads");
-        steps.btnLoadingClick();
+        steps.btnSiteSubMenuClick();
+        logger.logDelim();
 
-        logger.step("Step 3.1", "Select OS and Product and click Download");
+        logger.step("Step 3", "Select OS");
         steps.btnTypeOfOSClick(os);
-        steps.btnTypeOfProductClick(productName);
+        logger.logDelim();
 
-        logger.step("Step 3.1", "Click Send by Email");
+        logger.step("Step 3.1", "Select product and click Download");
+        steps.btnDownloadClick(productName);
+        logger.logDelim();
+
+        logger.step("Step 3.2", "Click Send by Email");
         steps.btnSendByEmailClick();
+        logger.logDelim();
 
         logger.step("Step 3.3", "Click Send and check Email");
-        steps.btnSendEmailClick(email);
-        steps.btnConfirmationClick();
+        steps.btnSendEmailClick();
         steps.checkMessageInMail();
     }
 }

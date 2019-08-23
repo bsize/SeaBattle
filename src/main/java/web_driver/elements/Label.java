@@ -1,7 +1,7 @@
-package webDriver.elements;
+package web_driver.elements;
 
 import org.openqa.selenium.By;
-import webDriver.entity.BaseElement;
+import web_driver.entity.BaseElement;
 
 public class Label extends BaseElement {
 

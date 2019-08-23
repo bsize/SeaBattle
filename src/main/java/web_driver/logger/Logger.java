@@ -1,6 +1,6 @@
-package webDriver.Logger;
+package web_driver.logger;
 
-import webDriver.utils.PropertiesReader;
+import web_driver.utils.PropertiesReader;
 import java.net.URL;
 
 public class Logger {
@@ -25,6 +25,10 @@ public class Logger {
 
     public void info(final String message) {
         logger.info(message);
+    }
+
+    public void logDelim(){
+        info("------------------------------");
     }
 
     public void warn(final String message) {

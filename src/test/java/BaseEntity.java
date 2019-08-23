@@ -1,7 +1,7 @@
-import app.steps.Steps;
-import webDriver.utils.CheckMailAPI;
-import webDriver.Logger.Logger;
-import webDriver.Browser;
+import app.utils.Steps;
+import web_driver.utils.CheckMailAPI;
+import web_driver.logger.Logger;
+import web_driver.Browser;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 

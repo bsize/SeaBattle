@@ -1,25 +1,24 @@
-package webDriver.utils;
+package web_driver.utils;
 
 
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webDriver.Browser;
-import webDriver.Logger.Logger;
+import web_driver.Browser;
+import web_driver.logger.Logger;
 import javax.mail.*;
 import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-
-
 public class CheckMailAPI {
 
-    private static URL confProp = PropertiesReader.class.getClassLoader().getResource("dates.xml");
+    private static URL confProp = PropertiesReader.class.getClassLoader().getResource("configuration.properties");
     private static int maxTimeWaitUntilMessageCome = 10;
     private static Logger logger = Logger.getInstance();
 
     public static String getMessage() throws MessagingException, IOException{
+        logger.info("Get text from message");
         waitUntilComeMessage();
         Store store = createEmailSession();
         Folder emailFolder = createInbox(store);
@@ -32,7 +31,6 @@ public class CheckMailAPI {
         String messageText = getTextFromMimeMultipart(content);
         emailFolder.close(true);
         store.close();
-        logger.info("Get text from message");
         return messageText;
     }
 
@@ -40,13 +38,13 @@ public class CheckMailAPI {
         logger.info("Create Mail session");
         PropertiesReader propertiesReader = new PropertiesReader();
         propertiesReader.setUrl(confProp);
-        String host = propertiesReader.getPropsFromXML("host");
-        String email = propertiesReader.getPropsFromXML("email");
-        String password = propertiesReader.getPropsFromXML("password");
+        String host = propertiesReader.getTestProps("host");
+        String email = propertiesReader.getTestProps("email");
+        String password = propertiesReader.getTestProps("password");
         Properties properties = new Properties();
-        properties.put("mail.pop3.host", host);
-        properties.put("mail.pop3.port", "995");
-        properties.put("mail.pop3.starttls.enable", "true");
+        properties.put(propertiesReader.getTestProps("pop3host"), host);
+        properties.put(propertiesReader.getTestProps("pop3port"), propertiesReader.getTestProps("numberOfPort"));
+        properties.put(propertiesReader.getTestProps("pop3starttls"), "true");
         Session emailSession = Session.getDefaultInstance(properties);
         Store store = null;
         try {
@@ -71,7 +69,7 @@ public class CheckMailAPI {
     }
 
     private static String getTextFromMimeMultipart(MimeMultipart mimeMultipart) throws MessagingException, IOException {
-        logger.info("Get text from message");
+        logger.info("Convert text from message");
         StringBuilder result = new StringBuilder();
         int count = mimeMultipart.getCount();
         for (int i = 0; i < count; i++) {

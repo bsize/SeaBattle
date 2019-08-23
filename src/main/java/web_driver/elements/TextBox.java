@@ -1,8 +1,8 @@
-package webDriver.elements;
+package web_driver.elements;
 
 import org.openqa.selenium.By;
-import webDriver.Logger.Logger;
-import webDriver.entity.BaseElement;
+import web_driver.logger.Logger;
+import web_driver.entity.BaseElement;
 
 public class TextBox extends BaseElement {
 

@@ -1,9 +1,10 @@
-package app.pages;
+package app.forms;
 
 import org.openqa.selenium.By;
-import webDriver.elements.Button;
+import web_driver.elements.Button;
 
-public class ConfirmationPage {
+public class ConfirmationForm {
+
     private Button btnConfirmation = new Button(By.xpath("//button[contains(text(),'OK')]"), "confirmation");
 
     public void btnConfirmationClick(){

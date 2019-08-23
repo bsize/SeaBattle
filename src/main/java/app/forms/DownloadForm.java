@@ -1,9 +1,9 @@
-package app.pages;
+package app.forms;
 
 import org.openqa.selenium.By;
-import webDriver.elements.Button;
+import web_driver.elements.Button;
 
-public class DownloadPage {
+public class DownloadForm {
 
     private Button btnSendByEmail = new Button(By.xpath("//span[contains(text(),'Отправить по почте')]"), "download");
 

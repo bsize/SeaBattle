@@ -1,7 +1,7 @@
 package app.pages;
 
 import org.openqa.selenium.By;
-import webDriver.elements.Button;
+import web_driver.elements.Button;
 
 public class HomePage {
 

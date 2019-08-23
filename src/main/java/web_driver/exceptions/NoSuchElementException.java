@@ -1,5 +1,5 @@
-package webDriver.exceptions;
-import webDriver.Logger.Logger;
+package web_driver.exceptions;
+import web_driver.logger.Logger;
 
 public class NoSuchElementException extends Exception{
     private static Logger logger = Logger.getInstance();

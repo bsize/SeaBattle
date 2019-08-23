@@ -1,6 +1,6 @@
-package webDriver.exceptions;
+package web_driver.exceptions;
 
-import webDriver.Logger.Logger;
+import web_driver.logger.Logger;
 
 public class InvalidBrowserException extends Exception {
     private static Logger logger = Logger.getInstance();

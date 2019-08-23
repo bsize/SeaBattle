@@ -1,6 +1,6 @@
-package webDriver.utils;
+package web_driver.utils;
 
-import webDriver.Logger.Logger;
+import web_driver.logger.Logger;
 import java.io.*;
 import java.net.URL;
 import java.util.Properties;

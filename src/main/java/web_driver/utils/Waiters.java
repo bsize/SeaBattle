@@ -1,10 +1,10 @@
-package webDriver.utils;
+package web_driver.utils;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webDriver.Browser;
-import webDriver.Logger.Logger;
+import web_driver.Browser;
+import web_driver.logger.Logger;
 
 public class Waiters {
 

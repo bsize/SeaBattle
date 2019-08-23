@@ -1,4 +1,4 @@
-package webDriver;
+package web_driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -7,16 +7,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import webDriver.Browser.Browsers;
-import webDriver.Logger.Logger;
-import javax.naming.NamingException;
+import web_driver.Browser.Browsers;
+import web_driver.exceptions.InvalidBrowserException;
+import web_driver.logger.Logger;
 import java.util.HashMap;
 
 public class BrowserFactory {
 
     private static Logger logger = Logger.getInstance();
 
-    public static WebDriver setUp(final Browsers type) throws NamingException {
+    public static WebDriver setUp(final Browsers type) throws InvalidBrowserException {
         WebDriver driver;
         switch (type) {
             case CHROME:
@@ -28,20 +28,19 @@ public class BrowserFactory {
                 driver = new FirefoxDriver(setFireFoxPreferences());
                 break;
             default:
-                logger.warn("Selected type of browser not support");
-                throw new NamingException();
+                logger.error("Selected type of browser not support");
+                throw new InvalidBrowserException();
         }
         return driver;
     }
 
-    public static WebDriver setUp(final String type) throws NamingException {
+    public static WebDriver setUp(final String type) throws InvalidBrowserException {
         for (Browsers t : Browsers.values()) {
             if (t.toString().equalsIgnoreCase(type)) {
                 return setUp(t);
             }
         }
-        logger.warn("Selected type of browser not support");
-        throw new NamingException();
+        throw new InvalidBrowserException();
     }
 
     private static FirefoxOptions setFireFoxPreferences() {

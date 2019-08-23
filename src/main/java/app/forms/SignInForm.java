@@ -1,11 +1,10 @@
-package app.pages;
+package app.forms;
 
 import org.openqa.selenium.By;
-import webDriver.elements.Button;
-import webDriver.elements.Label;
-import webDriver.elements.TextBox;
+import web_driver.elements.Button;
+import web_driver.elements.TextBox;
 
-public class SignInPage {
+public class SignInForm {
 
     private TextBox txbEmailAddress = new TextBox(By.xpath("//input[@type='email']"), "Email");
     private TextBox txbPassword = new TextBox(By.xpath("//input[@type='password']"), "Password");

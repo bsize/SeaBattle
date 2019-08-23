@@ -1,11 +1,12 @@
-package webDriver;
+package web_driver;
 
-import webDriver.Logger.Logger;
+import web_driver.exceptions.InvalidBrowserException;
+import web_driver.logger.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.naming.NamingException;
-import webDriver.utils.PropertiesReader;
+import web_driver.utils.PropertiesReader;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +41,8 @@ public class Browser {
                 driver = BrowserFactory.setUp(currentBrowser.toString());
                 driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
                 logger.info(logger.getLoc("loc.browser.constructed"));
-            } catch (NamingException e) {
+            } catch (InvalidBrowserException e) {
+                System.out.println();
                 logger.error("Browser driver wasn't constructed");
             }
             instance = new Browser();
@@ -52,10 +54,14 @@ public class Browser {
         logger.info(logger.getLoc("loc.browser.init.properties"));
         PropertiesReader props = new PropertiesReader();
         props.setUrl(confProp);
-        timeoutForCondition = props.getTestProps("defaultConditionTimeout");
-        implicitWait = props.getTestProps("implicitWait");
-        timeoutForPageLoad = props.getTestProps("pageLoadTimeout");
-        currentBrowser = Browsers.valueOf(props.getTestProps("browser").toUpperCase());
+        try {
+            timeoutForCondition = props.getTestProps("defaultConditionTimeout");
+            implicitWait = props.getTestProps("implicitWait");
+            timeoutForPageLoad = props.getTestProps("pageLoadTimeout");
+            currentBrowser = Browsers.valueOf(props.getTestProps("browser").toUpperCase());
+        }catch (Exception e){
+           logger.error("Exception " + e);
+        }
     }
 
     public static int getTimeoutForCondition() {

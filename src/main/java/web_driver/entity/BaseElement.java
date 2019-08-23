@@ -1,4 +1,4 @@
-package webDriver.entity;
+package web_driver.entity;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -7,9 +7,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import webDriver.Browser;
-import webDriver.Logger.Logger;
-import webDriver.utils.Waiters;
+import web_driver.Browser;
+import web_driver.logger.Logger;
+import web_driver.utils.Waiters;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-    <comment>application.properties</comment>
-    <entry key="email">datadriventest@mail.ru</entry>
-    <entry key="password">drivenSelenium</entry>
-    <entry key="host">pop.mail.ru</entry>
-</properties>
