@@ -15,7 +15,7 @@ public class SendEmailForm {
     private static URL confProp = PropertiesReader.class.getClassLoader().getResource("configuration.properties");
     private static By locatorForIframeOne = By.xpath("//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]");
     private static By locatorForIframeTwo = By.xpath("//iframe[starts-with(@name, 'c-') and starts-with(@src, 'https://www.google.com/recaptcha')]");
-    private Button btnSendEmail = new Button(By.xpath("//span[contains(text(),'ОТПРАВИТЬ')]"), "send Email button");
+    private Button btnSend = new Button(By.xpath("//span[contains(text(),'ОТПРАВИТЬ')]"), "Send");
     private Label captcha;
 
 
@@ -25,18 +25,18 @@ public class SendEmailForm {
             propertiesReader.setUrl(confProp);
             int waitForElementToBePresent = Integer.parseInt(propertiesReader.getTestProps("waitForElementToBePresent"));
             int waitForElementToBeInPresent = Integer.parseInt(propertiesReader.getTestProps("waitForElementToBeInPresent"));
-            captcha = new Label(locatorForIframeOne, "captcha");
+            captcha = new Label(locatorForIframeOne, "iframe captcha");
             if(captcha.isPresent(waitForElementToBePresent)){
                 Waiters.waitToBeVisibleElementLocated(locatorForIframeTwo, waitForElementToBePresent);
                 Waiters.waitToBeInVisibleElementLocated(locatorForIframeTwo, waitForElementToBeInPresent);
             }
         } catch (NoSuchElementException e) {
-            logger.warn("Element captcha isn't present");
+            logger.info("Element captcha isn't present");
         }
     }
 
     public void btnSendEmailClick() {
         checkCaptchaIsPresent();
-        btnSendEmail.click();
+        btnSend.click();
     }
 }

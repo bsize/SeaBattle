@@ -19,7 +19,7 @@ public class Waiters {
             WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), TIMEOUT_FOR_CONDITIONS);
             wait.until(ExpectedConditions.elementToBeClickable(locator));
         } catch (TimeoutException e) {
-            logger.error(logger.getLoc("loc.element.isnt.clickable") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
+            logger.warn(logger.getLoc("loc.element.isnt.clickable") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
         }
     }
 
@@ -29,7 +29,7 @@ public class Waiters {
             WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), TIMEOUT_FOR_CONDITIONS);
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         } catch (TimeoutException e) {
-            logger.error(logger.getLoc("loc.isnt.present") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
+            logger.warn(logger.getLoc("loc.isnt.present") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
         }
     }
 
@@ -39,7 +39,7 @@ public class Waiters {
             WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), TIMEOUT_FOR_CONDITIONS);
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (TimeoutException e) {
-            logger.error(logger.getLoc("loc.isnt.present") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
+            logger.warn(logger.getLoc("loc.isnt.present") + " " + TIMEOUT_FOR_CONDITIONS + " seconds.");
         }
     }
 
@@ -49,7 +49,7 @@ public class Waiters {
             new WebDriverWait(Browser.getInstance().getDriver(), waitTime).
                     until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
-            logger.error("Element isn't present");
+            logger.warn("Element isn't present");
         }
     }
 
@@ -59,7 +59,7 @@ public class Waiters {
             new WebDriverWait(Browser.getInstance().getDriver(), waitTime).
                     until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
-            logger.error("Element isn't present");
+            logger.warn("Element isn't present");
         }
     }
 
@@ -68,14 +68,13 @@ public class Waiters {
             logger.info("Wait until element to be presented");
             (new WebDriverWait(Browser.getInstance().getDriver(), TIMEOUT_FOR_CONDITIONS)).until((element) -> false);
         } catch (TimeoutException e) {
-            logger.error("Element isn't present");
+            logger.warn("Element isn't present");
         }
     }
 
     public static void waitForPageToLoad() {
         logger.info("Wait until for page to load");
         WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), TIMEOUT_FOR_PAGE_LOAD);
-
         try {
             wait.until(d -> {
                 if (!(d instanceof JavascriptExecutor)) {

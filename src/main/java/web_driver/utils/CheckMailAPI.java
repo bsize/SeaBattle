@@ -13,9 +13,11 @@ import java.util.Properties;
 
 public class CheckMailAPI {
 
-    private static URL confProp = PropertiesReader.class.getClassLoader().getResource("configuration.properties");
-    private static int maxTimeWaitUntilMessageCome = 10;
     private static Logger logger = Logger.getInstance();
+    private static URL confProp = PropertiesReader.class.getClassLoader().getResource("configuration.properties");
+    private static final int MAX_TIME_WAIT_UNTIL_MESSAGE_COME = 10;
+    private static final String MIME_TYPE_PLANE = "text/plain";
+    private static final String MIME_TYPE_HTML = "text/html";
 
     public static String getMessage() throws MessagingException, IOException{
         logger.info("Get text from message");
@@ -74,10 +76,10 @@ public class CheckMailAPI {
         int count = mimeMultipart.getCount();
         for (int i = 0; i < count; i++) {
             BodyPart bodyPart = mimeMultipart.getBodyPart(i);
-            if (bodyPart.isMimeType("text/plain")) {
+            if (bodyPart.isMimeType(MIME_TYPE_PLANE)) {
                 result.append("\n").append(bodyPart.getContent());
                 break;
-            } else if (bodyPart.isMimeType("text/html")) {
+            } else if (bodyPart.isMimeType(MIME_TYPE_HTML)) {
                 String html = (String) bodyPart.getContent();
                 result.append("\n").append(org.jsoup.Jsoup.parse(html).text());
             } else if (bodyPart.getContent() instanceof MimeMultipart) {
@@ -88,7 +90,6 @@ public class CheckMailAPI {
     }
 
     public static void deleteMessageBeforeTest() {
-        logger.info("Delete messages in Mail Box");
         Store store = createEmailSession();
         try {
             Folder emailFolder = createInbox(store);
@@ -99,6 +100,7 @@ public class CheckMailAPI {
             }
             emailFolder.close(true);
             store.close();
+            logger.info("Delete messages in Mail Box");
         } catch (MessagingException e) {
             logger.error("Delete message failed");
         }
@@ -106,7 +108,7 @@ public class CheckMailAPI {
 
     private static void waitUntilComeMessage(){
         logger.info("Wait until come message");
-        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), maxTimeWaitUntilMessageCome);
+        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), MAX_TIME_WAIT_UNTIL_MESSAGE_COME);
         wait.until((ExpectedCondition<Boolean>) driver -> {
             Message[] messages;
             Store store = createEmailSession();

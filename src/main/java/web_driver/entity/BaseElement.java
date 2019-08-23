@@ -106,7 +106,7 @@ public abstract class BaseElement {
 
     public void waitForIsElementPresent() {
         logger.info(String.format("Wait until element '%s' to be present", name));
-        isPresent(20);
+        isPresent(TIMEOUT_FOR_CONDITIONS);
         Assert.assertTrue(element.isDisplayed());
     }
 

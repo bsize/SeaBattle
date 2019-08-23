@@ -4,6 +4,7 @@ import web_driver.logger.Logger;
 import web_driver.Browser;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import web_driver.utils.Waiters;
 
 public abstract class BaseEntity {
     protected static Logger logger = Logger.getInstance();
@@ -16,8 +17,8 @@ public abstract class BaseEntity {
         CheckMailAPI.deleteMessageBeforeTest();
         browser = Browser.getInstance();
         browser.windowMaximise();
-        browser.waitForPageToLoad();
         browser.navigate(Browser.getUrl());
+        Waiters.waitForPageToLoad();
     }
 
     @AfterClass

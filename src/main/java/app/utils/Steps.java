@@ -17,8 +17,6 @@ public class Steps {
     private static ProductsForm productsForm;
     private static DownloadForm downloadForm;
     private static SendEmailForm sendEmailForm;
-
-
     private static ConfirmationForm confirmationForm;
     private static Logger logger = Logger.getInstance();
     private static String regexForSearchInText = "https.*Download";

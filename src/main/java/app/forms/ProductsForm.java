@@ -8,8 +8,8 @@ public class ProductsForm {
     private Button btnDownload;
 
     public void btnDownloadClick(String nameOfProduct) {
-        btnDownload = new Button(By.xpath(String.format("//div[contains(text(),'%s')]/ancestor::div[contains(@class,'download')]" +
-                "//button[contains(@data-section,'Downloads')]", nameOfProduct)), "select product Button");
+        btnDownload = new Button(By.xpath(String.format("//div[.//div[contains(text(), '%s')] and contains(@data-at-selector, 'downloadApplicationCard')]" +
+                "//button[contains(text(), 'Скачать')]", nameOfProduct)), "Download");
         btnDownload.clickWithExecutor();
     }
 }

@@ -6,7 +6,7 @@ public class InvalidBrowserException extends Exception {
     private static Logger logger = Logger.getInstance();
 
     public InvalidBrowserException() {
-        logger.info(logger.getLoc("loc.browser.name.wrong"));
+        logger.error(logger.getLoc("loc.browser.name.wrong"));
     }
 }
 

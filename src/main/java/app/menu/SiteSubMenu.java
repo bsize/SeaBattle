@@ -5,11 +5,11 @@ import web_driver.elements.Button;
 
 public class SiteSubMenu {
 
-    private Button btnSelectSiteSubMenu;
+    private Button btnSiteSubMenu;
 
     public void btnSiteSubMenuClick(String value) {
-        btnSelectSiteSubMenu = new Button(By.xpath(String.format("//div[starts-with(@class, 'w-menu') and contains(text(), '%s')]", value)), "Header menu");
-        btnSelectSiteSubMenu.click();
+        btnSiteSubMenu = new Button(By.xpath(String.format("//div[starts-with(@class, 'w-menu') and contains(text(), '%s')]", value)), "Site sub menu");
+        btnSiteSubMenu.click();
     }
 
 

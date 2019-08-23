@@ -8,7 +8,7 @@ public class SmartDataDrivenTest extends BaseEntity {
 
     @Parameters({"email", "password", "os", "productName"})
     @Test
-    public void DownloadKasperskyProductTest(String email, String password, String os, String productName) throws IOException, MessagingException {
+    public void DownloadKasperskyProductTest(String email, String password, String OS, String productName) throws IOException, MessagingException {
 
         logger.step("Step 1", "Authorization");
         steps.authorize(email, password);
@@ -19,7 +19,7 @@ public class SmartDataDrivenTest extends BaseEntity {
         logger.logDelim();
 
         logger.step("Step 3", "Select OS");
-        steps.btnTypeOfOSClick(os);
+        steps.btnTypeOfOSClick(OS);
         logger.logDelim();
 
         logger.step("Step 3.1", "Select product and click Download");

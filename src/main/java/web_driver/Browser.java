@@ -5,7 +5,6 @@ import web_driver.logger.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import javax.naming.NamingException;
 import web_driver.utils.PropertiesReader;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +41,6 @@ public class Browser {
                 driver.manage().timeouts().implicitlyWait(Long.parseLong(implicitWait), TimeUnit.SECONDS);
                 logger.info(logger.getLoc("loc.browser.constructed"));
             } catch (InvalidBrowserException e) {
-                System.out.println();
                 logger.error("Browser driver wasn't constructed");
             }
             instance = new Browser();
@@ -76,7 +74,6 @@ public class Browser {
             instance = null;
         } catch (Exception e) {
             logger.error("Driver didn't quit");
-
         } finally {
             instance = null;
         }
@@ -84,26 +81,6 @@ public class Browser {
 
     public static String getTimeoutForPageLoad() {
         return timeoutForPageLoad;
-    }
-
-    public void waitForPageToLoad() {
-        logger.info("Wait for page to load");
-        WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getTimeoutForPageLoad()));
-        try {
-            wait.until(d -> {
-                if (!(d instanceof JavascriptExecutor)) {
-                    return true;
-                }
-                Object result = ((JavascriptExecutor) d)
-                        .executeScript("return document['readyState'] ? 'complete' == document.readyState : true");
-                if (result != null && result instanceof Boolean && (Boolean) result) {
-                    return true;
-                }
-                return false;
-            });
-        } catch (Exception e) {
-            logger.error(logger.getLoc("loc.browser.page.timeout"));
-        }
     }
 
     public void windowMaximise() {

@@ -5,7 +5,7 @@ import web_driver.elements.Button;
 
 public class ConfirmationForm {
 
-    private Button btnConfirmation = new Button(By.xpath("//button[contains(text(),'OK')]"), "confirmation");
+    private Button btnConfirmation = new Button(By.xpath("//button[contains(text(),'OK')]"), "Confirmation");
 
     public void btnConfirmationClick(){
         btnConfirmation.click();
